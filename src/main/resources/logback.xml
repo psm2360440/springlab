@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="LOGS_ABSOLUTE_PATH" value="./logs" />
+    <property name="LOGS_ABSOLUTE_PATH" value="./logs"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -24,14 +24,14 @@
     </appender>
 
     <!-- the level can be varied followed by development stages-->
-    <root level="ERROR">
-        <appender-ref ref="STDOUT" />
-    <!--print as standard output / it might be printed as file-->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <!--print as standard output / it might be printed as file-->
     </root>
 
     <logger name="org.springframework.web" level="DEBUG">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
     </logger>
     <!--
     <logger name="jdbc" level="OFF" />

@@ -11,6 +11,7 @@ public class Web05Application {
     public static void main(String[] args) {
         SpringApplication.run(Web05Application.class, args);
     }
+
     @Bean
     public InternalResourceViewResolver setupViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();

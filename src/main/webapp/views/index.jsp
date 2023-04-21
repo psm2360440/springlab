@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/js/index0421.js"></script>
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
@@ -58,51 +60,72 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img style="width: 10px" src="https://cdn-icons-png.flaticon.com/512/1076/1076928.png">
             </a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Contact</a></li>
+                <li class="active"><a href="/">Logo</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/jsp">JSP</a></li>
+                <li><a href="/cust">Cust</a></li>
+                <li><a href="/item">Item</a></li>
+                <c:if test="${logincust != null}">
+                    <li><a href="#">Contact</a></li>
+                </c:if>
+
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li><a href="/register"><span class="glyphicon glyphicon-pencil"></span> Register</a></li>
-            </ul>
+            <c:choose>
+                <c:when test="${logincust == null}">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="/register"><span class="glyphicon glyphicon-pencil"></span> Register</a></li>
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+                    </ul>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </nav>
 
 <div class="container-fluid text-center">
     <div class="row content">
-    <%-- Left menu--%>
-    <jsp:include page="left.jsp"/>
-    <%--Left menu end--%>
+        <%-- Left menu--%>
+        <c:choose>
+            <c:when test="${left==null}">
+                <jsp:include page="left.jsp"/>
+            </c:when>
+            <c:otherwise>
+                <jsp:include page="${left}.jsp"/>
+            </c:otherwise>
+        </c:choose>
+        <%--Left menu end--%>
 
-    <%--   Center start--%>
-    <c:choose>
-        <c:when test="${center==null}">
-            <jsp:include page="center.jsp"/>
-        </c:when>
-        <c:otherwise>
-            <jsp:include page="${center}.jsp"/>
-        </c:otherwise>
-    </c:choose>
+        <%--   Center start--%>
+        <c:choose>
+            <c:when test="${center==null}">
+                <jsp:include page="center.jsp"/>
+            </c:when>
+            <c:otherwise>
+                <jsp:include page="${center}.jsp"/>
+            </c:otherwise>
+        </c:choose>
 
-    <%--   Center end--%>
-    <div class="col-sm-2 sidenav">
-        <div class="well">
-            <p>ADS</p>
-        </div>
-        <div class="well">
-            <p>ADS</p>
+        <%--   Center end--%>
+        <div class="col-sm-2 sidenav">
+            <div class="well">
+                <p>ADS</p>
+            </div>
+            <div class="well">
+                <p>ADS</p>
+            </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 

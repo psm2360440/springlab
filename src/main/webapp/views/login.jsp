@@ -1,20 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
-    let login_form = {
-        init: function () {
-            $('#login_btn').click(function () {
-                login_form.send();
-            });
-        },
-        send: function () {
-            $('#login_form').attr({
-                'action': '/loginimpl',
-                'method': 'post'
-            });
-            $('#login_form').submit();
-        }
-    };
     $(function () {
         login_form.init();
     });
@@ -35,9 +21,9 @@
                     <input id="password" type="password" class="form-control" name="pwd" placeholder="PASSWORD">
                 </div>
                 <div class="form-group" style="margin-top: 10px; text-align: center;">
-                    <button type = "button" id="join_btn" class="btn btn-default">Join</button>
-                    <button type = "button" id="find_btn" class="btn btn-default">Find</button>
-                    <button type = "button" id="login_btn" class="btn btn-default">Submit</button>
+                    <button type="button" id="join_btn" class="btn btn-default">Join</button>
+                    <button type="button" id="find_btn" class="btn btn-default">Find</button>
+                    <button type="button" id="login_btn" class="btn btn-default">Submit</button>
                 </div>
             </form>
 
