@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/js/index0421.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5f154fb7d1604c83c2bdb25d0f4a23c"></script>
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
@@ -20,7 +21,7 @@
 
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
         .row.content {
-            height: 650px
+            height: 750px
         }
 
         /* Set gray background color and 100% height */
@@ -69,6 +70,9 @@
                 <li class="active"><a href="/">Logo</a></li>
                 <li><a href="/">Home</a></li>
                 <li><a href="/jsp">JSP</a></li>
+                <li><a href="/ajax">AJAX</a></li>
+                <li><a href="/map">MAP</a></li>
+                <li><a href="/chart">CHART</a></li>
                 <li><a href="/cust">Cust</a></li>
                 <li><a href="/item">Item</a></li>
                 <c:if test="${logincust != null}">
