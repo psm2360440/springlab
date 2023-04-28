@@ -39,20 +39,20 @@ public class ItemController {
     }
 
     @Autowired
-    ItemService service;
+    ItemService itemService;
     @RequestMapping("/all")
-    public String all(Model model) {
+    public String all(Model model) throws Exception {
 
         List<Item> list = null;
 
         try {
-            list = service.get();
+            list = itemService.get();
             for(Item obj:list){
                 log.info(obj.toString());
             }
         } catch (Exception e) {
+            throw new Exception("시스템 장애: ER0002");
 
-            e.printStackTrace();
         }
 
         model.addAttribute("allitem", list);

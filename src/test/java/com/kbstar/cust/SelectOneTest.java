@@ -15,9 +15,13 @@ class SelectOneTest {
 
     @Test
     void contextLoads() throws Exception {
+        Cust cust = null;
+
         try {
-            service.get("id99");
-            log.info("셀렉 정상");
+            cust = service.get("id10");
+            log.info("-----------------------------------------------------------------------");
+            log.info(cust.toString());
+            log.info("-----------------------------------------------------------------------");
         } catch (Exception e) {
             log.info("셀렉 에러..");
         }

@@ -1,12 +1,15 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Cust;
+import com.kbstar.service.CustService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+@Slf4j
 @Controller
 public class MainController {
 
@@ -35,10 +38,15 @@ public class MainController {
         model.addAttribute("center", "register");
         return "index";
     }
-
+    @Autowired
+    CustService custService;
     @RequestMapping("/registerimpl")
-    public String registerimpl(Model model, Cust cust) {
-        logger.info("information-------------------------------------" + cust.toString());
+    public String registerimpl(Model model, Cust cust) throws Exception {
+        try {
+            custService.register(cust);
+        } catch (Exception e) {
+            throw new Exception("시스템 장애: ER0006");
+        }
         model.addAttribute("rcust", cust);
         model.addAttribute("center", "registerok");
         return "index";

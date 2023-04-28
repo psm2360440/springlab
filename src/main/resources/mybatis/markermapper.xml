@@ -8,7 +8,7 @@
         SELECT * FROM marker WHERE id=#{id}
     </select>
     <select id="getloc" parameterType="String" resultType="marker">
-        SELECT * FROM marker WHERE loc=#{loc}
+        SELECT * FROM marker WHERE loc=UPPER(#{loc})
     </select>
     <select id="selectall" resultType="marker">
         SELECT * FROM marker

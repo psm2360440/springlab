@@ -16,9 +16,8 @@ class InsertTest {
 
     @Test
     void contextLoads() throws Exception {
-        Cust obj = new Cust("id100", "pwd100", "james");
         try {
-            service.register(obj);
+            service.register( new Cust("id10", "pwd100", "james"));
             log.info("등록 정상");
         } catch (Exception e) {
             if (e instanceof DuplicateKeyException) {

@@ -2,6 +2,7 @@ package com.kbstar.controller;
 
 import com.kbstar.dto.Cust;
 import com.kbstar.dto.Marker;
+import com.kbstar.service.CustService;
 import com.kbstar.service.MarkerService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONAware;
@@ -25,13 +26,21 @@ public class AjaxImplController {
         return date;
     }
 
+    @Autowired
+    CustService custService;
     @RequestMapping("/checkid")
-    public Object checkid(String id){
+    public Object checkid(String id) throws Exception {
+
         int result = 0;
-        if(id.equals("qqqq")||id.equals("aaaa")||id.equals("ssss")){
-           result = 1;
-        }else{
-            result = 0;
+        Cust cust= null;
+
+        try {
+            cust = custService.get(id);
+        } catch (Exception e) {
+            throw new Exception("시스템 장애: ER0005");
+        }
+        if(cust!=null){
+            result = 1;
         }
         return result;
     }
@@ -65,15 +74,15 @@ public class AjaxImplController {
     }
 
     @Autowired
-    MarkerService service;
+    MarkerService markerService;
     @RequestMapping("/markers")
-    public Object markers(String loc){
+    public Object markers(String loc) throws Exception {
 
         List<Marker> list = null;
         try {
-            list = service.getLoc(loc);
+            list = markerService.getLoc(loc);
         }catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception("시스템 장애: ER0003");
         }
 
         JSONArray ja = new JSONArray();

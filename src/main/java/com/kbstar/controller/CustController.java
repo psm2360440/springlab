@@ -54,16 +54,15 @@ public class CustController {
         return "index";
     }
     @Autowired
-    CustService service;
+    CustService custService;
     @RequestMapping("/all")
-    public String all(Model model) {
+    public String all(Model model) throws Exception {
 
         List<Cust> list = null;
         try {
-            list = service.get();
+            list = custService.get();
         }catch (Exception e) {
-            log.info("에러");
-            e.printStackTrace();
+            throw new Exception("시스템 장애: ER0001");
         }
         model.addAttribute("clist", list);
 
